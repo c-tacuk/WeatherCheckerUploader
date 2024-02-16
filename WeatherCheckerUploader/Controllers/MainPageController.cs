@@ -25,7 +25,7 @@ namespace WeatherCheckerUploader.Controllers
             //{
             //    Console.WriteLine(el);
             //}
-            var elems = exelMethods.GetColumnsNames();
+            var elems = exelMethods.GetColumnNames();
             foreach (string el in elems)
             {
                 Console.WriteLine(el);
