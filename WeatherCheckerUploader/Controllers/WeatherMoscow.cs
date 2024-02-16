@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using WeatherCheckerUploader.Models;
 using WeatherCheckerUploader.WorkWithExel;
 
@@ -6,6 +7,11 @@ namespace WeatherCheckerUploader.Controllers
 {
     public class WeatherMoscow : Controller
     {
+        private readonly IExelMethods exelMethods;
+        public WeatherMoscow(IExelMethods exelMethods)
+        {
+            this.exelMethods = exelMethods;
+        }
         public IActionResult Index()
         {
             return View();
@@ -26,7 +32,6 @@ namespace WeatherCheckerUploader.Controllers
         {
             string path = "WeatherArchives/moskva_" + year + ".xlsx";
             var weatherArchive = new WeatherArchiveModel();
-            var exelMethods = new ExelMethods(path);
             exelMethods.SetAllData(weatherArchive);
             return View(weatherArchive);
         }

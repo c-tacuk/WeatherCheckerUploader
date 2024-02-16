@@ -1,7 +1,13 @@
+using WeatherCheckerUploader;
+using WeatherCheckerUploader.WorkWithExel;
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddTransient<IExelMethods, ExelMethods>();
 
 var app = builder.Build();
 

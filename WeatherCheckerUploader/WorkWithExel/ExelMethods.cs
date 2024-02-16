@@ -4,14 +4,14 @@ using WeatherCheckerUploader.Models;
 
 namespace WeatherCheckerUploader.WorkWithExel
 {
-    public class ExelMethods
+    public class ExelMethods : IExelMethods
     {
         const int numbersOfColumns = 12;
         IWorkbook workbook;
         ISheet sheet;
-        public ExelMethods(string path)
+        public ExelMethods()
         {
-            using (FileStream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read))
+            using (FileStream fileStream = new FileStream("C:\\Users\\DlyaS\\OneDrive\\Рабочий стол\\Все\\IT\\Проекты\\WeatherCheckerUploader_TestTask\\WeatherCheckerUploader\\WeatherCheckerUploader\\WeatherArchives\\moskva_2010.xlsx", FileMode.Open, FileAccess.Read))
             {
                 workbook = new XSSFWorkbook(fileStream);
             }
