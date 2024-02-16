@@ -589,3 +589,6 @@ FodyWeavers.xsd
 /WeatherCheckerUploader/obj/WeatherCheckerUploader.csproj.nuget.dgspec.json
 /WeatherCheckerUploader/obj/project.assets.json
 /WeatherCheckerUploader/obj/project.nuget.cache
+/.vs/ProjectEvaluation/weathercheckeruploader.metadata.v7.bin
+/.vs/ProjectEvaluation/weathercheckeruploader.projects.v7.bin
+/.vs/WeatherCheckerUploader/v17/.futdcache.v2
