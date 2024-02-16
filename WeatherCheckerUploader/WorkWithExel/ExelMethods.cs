@@ -6,11 +6,10 @@ namespace WeatherCheckerUploader.WorkWithExel
 {
     public class ExelMethods
     {
-        const string path = "WeatherArchives/moskva_2010.xlsx";
         const int numbersOfColumns = 12;
         IWorkbook workbook;
         ISheet sheet;
-        public ExelMethods()
+        public ExelMethods(string path)
         {
             using (FileStream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read))
             {
