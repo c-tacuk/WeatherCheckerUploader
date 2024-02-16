@@ -1,7 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+using WeatherCheckerUploader.Db;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+string connection = builder.Configuration.GetConnectionString("weatherApp");
+builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(connection));
 
 var app = builder.Build();
 

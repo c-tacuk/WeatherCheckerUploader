@@ -1,6 +1,6 @@
 ﻿namespace WeatherCheckerUploader.Db.Models
 {
-    public class WeatherArchiveModel
+    public class DbWeatherArchiveModel
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
