@@ -1,6 +1,6 @@
 ﻿namespace WeatherCheckerUploader.Models
 {
-    public class WiatherArchive
+    public class WeatherArchiveModel
     {
         public string Name { get; set; }
         public string Header { get; set; }

@@ -25,8 +25,10 @@ namespace WeatherCheckerUploader.Controllers
             //{
             //    Console.WriteLine(el);
             //}
-            var elems = exelMethods.GetColumnNames();
-            foreach (string el in elems)
+            
+            var weatherArchive = new WeatherArchiveModel();
+            exelMethods.SetAllData(weatherArchive);
+            foreach (string el in weatherArchive.Times)
             {
                 Console.WriteLine(el);
             }
