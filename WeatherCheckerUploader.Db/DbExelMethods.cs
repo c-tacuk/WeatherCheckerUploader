@@ -1,17 +1,19 @@
 ﻿using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
-using WeatherCheckerUploader.Models;
+using WeatherCheckerUploader.Db.Models;
 
-namespace WeatherCheckerUploader.WorkWithExel
+namespace WeatherCheckerUploader.Db
 {
-    public class ExelMethods
+
+    public class DbExelMethods
     {
-        const string path = "WeatherArchives/moskva_2010.xlsx";
+        private readonly DatabaseContext databaseContext;
         const int numbersOfColumns = 12;
         IWorkbook workbook;
         ISheet sheet;
-        public ExelMethods()
+        public DbExelMethods(DatabaseContext databaseContext, string path)
         {
+            this.databaseContext = databaseContext;
             using (FileStream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read))
             {
                 workbook = new XSSFWorkbook(fileStream);
@@ -60,9 +62,8 @@ namespace WeatherCheckerUploader.WorkWithExel
             }
             return columnNames;
         }
-        public void SetAllData(WeatherArchiveModel model)
+        public void SetAllData(DbWeatherArchiveModel model)
         {
-            model.Name = "msk_2010";
             model.Header = GetArchiveHeader();
             model.Description = GetArchiveDescription();
             model.ColumnNames = GetColumnNames();
@@ -78,6 +79,9 @@ namespace WeatherCheckerUploader.WorkWithExel
             model.Hs = GetColumnData(9);
             model.VVs = GetColumnData(10);
             model.WeatherPhenomenas = GetColumnData(11);
+
+            databaseContext.dbWeatherArchiveModels.Add(model);
+            databaseContext.SaveChanges();
         }
     }
 }

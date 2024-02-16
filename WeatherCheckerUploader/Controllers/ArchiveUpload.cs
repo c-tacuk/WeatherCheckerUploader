@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WeatherCheckerUploader.Db;
 using WeatherCheckerUploader.Models;
 
 namespace WeatherCheckerUploader.Controllers
@@ -6,9 +7,11 @@ namespace WeatherCheckerUploader.Controllers
     public class ArchiveUpload : Controller
     {
         IWebHostEnvironment _appEnvironment;
-        public ArchiveUpload(IWebHostEnvironment appEnvironment)
+        DbExelMethods _dbExelMethods;
+        public ArchiveUpload(IWebHostEnvironment appEnvironment, DbExelMethods dbExelMethods)
         {
             _appEnvironment = appEnvironment;
+            _dbExelMethods = dbExelMethods;
         }
         public IActionResult Index()
         {
@@ -24,7 +27,7 @@ namespace WeatherCheckerUploader.Controllers
                 {
                     await uploadedFile.CopyToAsync(fileStream);
                 }
-                var file = new WeatherArchiveModel { Name = uploadedFile.FileName };
+                
             }
             return RedirectToAction("Index");
         }
