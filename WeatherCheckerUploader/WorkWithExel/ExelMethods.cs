@@ -8,40 +8,30 @@ namespace WeatherCheckerUploader.WorkWithExel
     {
         const string path = "WeatherArchives/moskva_2010.xlsx";
         const int numbersOfColumns = 12;
-
-        public string GetCellData(int rowNum, int cellNum)
+        IWorkbook workbook;
+        ISheet sheet;
+        public ExelMethods()
         {
-            IWorkbook workbook;
             using (FileStream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read))
             {
                 workbook = new XSSFWorkbook(fileStream);
             }
-            ISheet sheet = workbook.GetSheetAt(0); // Получение листа
-            var col = sheet.GetColumnStyle(0);
+            sheet = workbook.GetSheetAt(0); // Получение листа
+        }
+        public string GetCellData(int rowNum, int cellNum)
+        {
             IRow row = sheet.GetRow(rowNum); // строка
             string cell = row.GetCell(cellNum)?.ToString(); // ячейка (столбец)
             return cell;
         }
         public List<string> GetRowData(int rowNum)
         {
-            IWorkbook workbook;
-            using (FileStream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read))
-            {
-                workbook = new XSSFWorkbook(fileStream);
-            }
-            ISheet sheet = workbook.GetSheetAt(0);
             IRow row = sheet.GetRow(rowNum);
             return row.Cells?.Select(i => i.ToString()).ToList();
         }
         public List<string> GetColumnData(int columnNum)
         {
-            IWorkbook workbook;
-            using (FileStream fileStream = new FileStream(path, FileMode.Open, FileAccess.Read))
-            {
-                workbook = new XSSFWorkbook(fileStream);
-            }
             var lastRowNum = workbook.GetSheetAt(0).LastRowNum;
-
             var columnData = new List<string>();
             for (int i = 4; i <= lastRowNum; i++)
             {
