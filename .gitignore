@@ -581,3 +581,11 @@ FodyWeavers.xsd
 
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
+/.vs/WeatherCheckerUploader/DesignTimeBuild/.dtbcache.v2
+/.vs/WeatherCheckerUploader/v17/.suo
+/.vs/WeatherCheckerUploader/FileContentIndex/c0b2c4c2-8aeb-4f79-bf5f-277ca4eb9be8.vsidx
+/WeatherCheckerUploader/obj/Debug/net6.0/WeatherCheckerUploader.assets.cache
+/WeatherCheckerUploader/obj/Debug/net6.0/WeatherCheckerUploader.GeneratedMSBuildEditorConfig.editorconfig
+/WeatherCheckerUploader/obj/WeatherCheckerUploader.csproj.nuget.dgspec.json
+/WeatherCheckerUploader/obj/project.assets.json
+/WeatherCheckerUploader/obj/project.nuget.cache
