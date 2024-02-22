@@ -34,7 +34,6 @@ namespace WeatherCheckerUploader.Controllers
         {
             string path = "WeatherArchives/moskva_" + year + ".xlsx";
             var weatherArchive = new DbWeatherArchiveModel();
-            exelMethods.SetAllData(weatherArchive);
             var models = databaseContext.dbWeatherArchiveModels;
             var names = new List<string>();
             foreach(var model in models)

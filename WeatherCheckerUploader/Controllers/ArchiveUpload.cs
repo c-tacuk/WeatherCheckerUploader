@@ -1,14 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using NPOI.SS.UserModel;
+using NPOI.XSSF.UserModel;
+using WeatherAppDatabase;
 using WeatherCheckerUploader.Models;
 
 namespace WeatherCheckerUploader.Controllers
 {
     public class ArchiveUpload : Controller
     {
-        IWebHostEnvironment _appEnvironment;
-        public ArchiveUpload(IWebHostEnvironment appEnvironment)
+        IWebHostEnvironment appEnvironment;
+        IDbExelMethods exelMethods;
+        public ArchiveUpload(IWebHostEnvironment appEnvironment, IDbExelMethods exelMethods)
         {
-            _appEnvironment = appEnvironment;
+            this.appEnvironment = appEnvironment;
+            this.exelMethods = exelMethods;
         }
         public IActionResult Index()
         {
@@ -20,11 +25,12 @@ namespace WeatherCheckerUploader.Controllers
             if (uploadedFile != null)
             {
                 string path = "/WeatherArchives/" + uploadedFile.FileName; // путь к папке WeatherArchives
-                using (var fileStream = new FileStream(_appEnvironment.ContentRootPath + path, FileMode.Create)) // сохраняем файл в папку WeatherArchives
+                using (var fileStream = new FileStream(appEnvironment.ContentRootPath + path, FileMode.Create)) // сохраняем файл в папку WeatherArchives
                 {
                     await uploadedFile.CopyToAsync(fileStream);
                 }
-                var file = new WeatherArchiveModel { Name = uploadedFile.FileName };
+                string сombinedPath = System.IO.Path.Combine(Directory.GetCurrentDirectory(), $"..\\WeatherCheckerUploader\\WeatherArchives\\{uploadedFile.FileName}");
+                exelMethods.SetAllData(сombinedPath);
             }
             return RedirectToAction("Index");
         }
