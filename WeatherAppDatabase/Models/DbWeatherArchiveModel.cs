@@ -9,7 +9,7 @@ namespace WeatherAppDatabase.Models
         public string Header { get; set; }
         public string Description { get; set; }
         public List<ColumnName> ColumnNames { get; set; }
-        //public List<string> Dates { get; set; }
+        public List<Date> Dates { get; set; }
         //public List<string> Times { get; set; }
         //public List<string> Temperatures { get; set; }
         //public List<string> RelativeHumidities { get; set; }

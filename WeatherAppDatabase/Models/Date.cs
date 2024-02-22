@@ -9,5 +9,6 @@ namespace WeatherAppDatabase.Models
     public class Date
     {
         public Guid Id { get; set; }
+        public string DateValue { get; set; }
     }
 }

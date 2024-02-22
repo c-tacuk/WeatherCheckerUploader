@@ -1,5 +1,6 @@
 ﻿using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
+using System.Linq;
 using WeatherAppDatabase.Models;
 
 namespace WeatherAppDatabase.WorkWithExel
@@ -25,6 +26,18 @@ namespace WeatherAppDatabase.WorkWithExel
             string cell = row.GetCell(cellNum)?.ToString(); // ячейка (столбец)
             return cell;
         }
+        public string GetArchiveHeader()
+        {
+            return GetCellData(0, 0);
+        }
+        public string GetArchiveDescription()
+        {
+            return GetCellData(1, 0);
+        }
+        public string GetColumnName(int columnNum)
+        {
+            return GetCellData(2, columnNum) + GetCellData(3, columnNum);
+        }
         public List<string> GetRowData(int rowNum)
         {
             IRow row = sheet.GetRow(rowNum);
@@ -40,40 +53,34 @@ namespace WeatherAppDatabase.WorkWithExel
             }
             return columnData;
         }
-        public string GetArchiveHeader()
+        public List<ColumnName> GetColumnNames()
         {
-            return GetCellData(0, 0);
-        }
-        public string GetArchiveDescription()
-        {
-            return GetCellData(1, 0);
-        }
-        public string GetColumnName(int columnNum)
-        {
-            return GetCellData(2, columnNum) + GetCellData(3, columnNum);
-        }
-        public List<string> GetColumnNames()
-        {
-            var columnNames = new List<string>();
+            var columnNames = new List<ColumnName>();
             for (int i = 0; i < numbersOfColumns; i++)
             {
-                columnNames.Add(GetColumnName(i));
+                columnNames.Add(new ColumnName { Id = new Guid(), Name = GetColumnName(i) });
             }
             return columnNames;
+        }
+        public List<Date> GetDates()
+        {
+            var dates = new List<Date>();
+            foreach (var el in GetColumnData(0))
+            {
+                if (dates.FirstOrDefault(i => i.DateValue == el) == null && dbContext.dates.FirstOrDefault(i => i.DateValue == el) == null)
+                {
+                    dates.Add(new Date { Id = new Guid(), DateValue = el });
+                }
+            }
+            return dates;
         }
         public void SetAllData(DbWeatherArchiveModel model)
         {
             model.Name = "msk_2010";
             model.Header = GetArchiveHeader();
             model.Description = GetArchiveDescription();
-            var cNames = GetColumnNames();
-            var dbCNames = new List<ColumnName>();
-            foreach (var name in cNames)
-            {
-                dbCNames.Add(new ColumnName { Id = new Guid(), Name = name });
-            }
-            model.ColumnNames = dbCNames;
-            //model.Dates = GetColumnData(0);
+            model.ColumnNames = GetColumnNames();
+            model.Dates = GetDates();
             //model.Times = GetColumnData(1);
             //model.Temperatures = GetColumnData(2);
             //model.RelativeHumidities = GetColumnData(3);

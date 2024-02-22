@@ -10,7 +10,9 @@ namespace WeatherAppDatabase
 {
     public class DatabaseContext : DbContext
     {
-        public DbSet<DbWeatherArchiveModel> dbWeatherArchiveModels {  get; set; }
+        public DbSet<DbWeatherArchiveModel> dbWeatherArchiveModels { get; set; }
+        public DbSet<ColumnName> columnNames { get; set; }
+        public DbSet<Date> dates { get; set; }
         public DatabaseContext(DbContextOptions<DatabaseContext> options)
         : base(options)
         {
