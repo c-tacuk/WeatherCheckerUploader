@@ -9,6 +9,6 @@ namespace WeatherAppDatabase.Models
     public class Temperature
     {
         public Guid Id { get; set; }
-        public string Value { get; set; } = "null";
+        public string Value { get; set; }
     }
 }

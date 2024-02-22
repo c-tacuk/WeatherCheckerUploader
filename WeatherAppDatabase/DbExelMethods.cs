@@ -68,110 +68,190 @@ namespace WeatherAppDatabase.WorkWithExel
             var dates = new List<Date>();
             foreach (var el in GetColumnData(0))
             {
-                dates.Add(new Date { Id = new Guid(), Value = el });
+                if (el == null)
+                {
+                    dates.Add(new Date { Id = new Guid(), Value = "null" });
+                }
+                else
+                {
+                    dates.Add(new Date { Id = new Guid(), Value = el });
+                }
             }
             return dates;
         }
         public List<Time> GetTimes()
         {
-            var dates = new List<Date>();
-            foreach (var el in GetColumnData(0))
+            var times = new List<Time>();
+            foreach (var el in GetColumnData(1))
             {
-                dates.Add(new Date { Id = new Guid(), Value = el });
+                if (el == null)
+                {
+                    times.Add(new Time { Id = new Guid(), Value = "null" });
+                }
+                else
+                {
+                    times.Add(new Time { Id = new Guid(), Value = el });
+                }
             }
-            return dates;
+            return times;
         }
         public List<Temperature> GetTemperatures()
         {
-            var dates = new List<Date>();
-            foreach (var el in GetColumnData(0))
+            var temperatures = new List<Temperature>();
+            foreach (var el in GetColumnData(2))
             {
-                dates.Add(new Date { Id = new Guid(), Value = el });
+                if (el == null)
+                {
+                    temperatures.Add(new Temperature { Id = new Guid(), Value = "null" });
+                }
+                else
+                {
+                    temperatures.Add(new Temperature { Id = new Guid(), Value = el });
+                }
             }
-            return dates;
+            return temperatures;
         }
         public List<RelativeHumidity> GetRelativeHumidities()
         {
-            var dates = new List<Date>();
-            foreach (var el in GetColumnData(0))
+            var relativeHumidities = new List<RelativeHumidity>();
+            foreach (var el in GetColumnData(3))
             {
-                dates.Add(new Date { Id = new Guid(), Value = el });
+                if (el == null)
+                {
+                    relativeHumidities.Add(new RelativeHumidity { Id = new Guid(), Value = "null" });
+                }
+                else
+                {
+                    relativeHumidities.Add(new RelativeHumidity { Id = new Guid(), Value = el });
+                }
             }
-            return dates;
+            return relativeHumidities;
         }
         public List<TD> GetTDs()
         {
-            var dates = new List<Date>();
-            foreach (var el in GetColumnData(0))
+            var TDs = new List<TD>();
+            foreach (var el in GetColumnData(4))
             {
-                dates.Add(new Date { Id = new Guid(), Value = el });
+                if (el == null)
+                {
+                    TDs.Add(new TD { Id = new Guid(), Value = "null" });
+                }
+                else
+                {
+                    TDs.Add(new TD { Id = new Guid(), Value = el });
+                }
             }
-            return dates;
+            return TDs;
         }
         public List<AtmosphericPressure> GetAtmosphericPressures()
         {
-            var dates = new List<Date>();
-            foreach (var el in GetColumnData(0))
+            var atmosphericPressures = new List<AtmosphericPressure>();
+            foreach (var el in GetColumnData(5))
             {
-                dates.Add(new Date { Id = new Guid(), Value = el });
+                if (el == null)
+                {
+                    atmosphericPressures.Add(new AtmosphericPressure { Id = new Guid(), Value = "null" });
+                }
+                else
+                {
+                    atmosphericPressures.Add(new AtmosphericPressure { Id = new Guid(), Value = el });
+                }
             }
-            return dates;
+            return atmosphericPressures;
         }
         public List<WindDirection> GetWindDirections()
         {
-            var dates = new List<Date>();
-            foreach (var el in GetColumnData(0))
+            var windDirections = new List<WindDirection>();
+            foreach (var el in GetColumnData(6))
             {
-                dates.Add(new Date { Id = new Guid(), Value = el });
+                if (el == null)
+                {
+                    windDirections.Add(new WindDirection { Id = new Guid(), Value = "null" });
+                }
+                else
+                {
+                    windDirections.Add(new WindDirection { Id = new Guid(), Value = el });
+                }
             }
-            return dates;
+            return windDirections;
         }
         public List<WindSpeed> GetWindSpeeds()
         {
-            var dates = new List<Date>();
-            foreach (var el in GetColumnData(0))
+            var windSpeeds = new List<WindSpeed>();
+            foreach (var el in GetColumnData(7))
             {
-                dates.Add(new Date { Id = new Guid(), Value = el });
+                if (el == null)
+                {
+                    windSpeeds.Add(new WindSpeed { Id = new Guid(), Value = "null" });
+                }
+                else
+                {
+                    windSpeeds.Add(new WindSpeed { Id = new Guid(), Value = el });
+                }
             }
-            return dates;
+            return windSpeeds;
         }
         public List<Cloudiness> GetCloudinesses()
         {
-            var dates = new List<Date>();
-            foreach (var el in GetColumnData(0))
+            var cloudinesses = new List<Cloudiness>();
+            foreach (var el in GetColumnData(8))
             {
-                dates.Add(new Date { Id = new Guid(), Value = el });
+                if (el == null)
+                {
+                    cloudinesses.Add(new Cloudiness { Id = new Guid(), Value = "null" });
+                }
+                else
+                {
+                    cloudinesses.Add(new Cloudiness { Id = new Guid(), Value = el });
+                }
             }
-            return dates;
+            return cloudinesses;
         }
         public List<H> GetHs()
         {
-            var dates = new List<Date>();
-            foreach (var el in GetColumnData(0))
+            var Hs = new List<H>();
+            foreach (var el in GetColumnData(9))
             {
-                dates.Add(new Date { Id = new Guid(), Value = el });
+                if (el == null)
+                {
+                    Hs.Add(new H { Id = new Guid(), Value = "null" });
+                }
+                else
+                {
+                    Hs.Add(new H { Id = new Guid(), Value = el });
+                }
             }
-            return dates;
+            return Hs;
         }
         public List<VV> GetVVs()
         {
-            var dates = new List<Date>();
-            foreach (var el in GetColumnData(0))
+            var VVs = new List<VV>();
+            foreach (var el in GetColumnData(10))
             {
-                dates.Add(new Date { Id = new Guid(), Value = el });
+                if (el == null)
+                {
+                    VVs.Add(new VV { Id = new Guid(), Value = "null" });
+                }
+                else
+                {
+                    VVs.Add(new VV { Id = new Guid(), Value = el });
+                }
             }
-            return dates;
+            return VVs;
         }
         public List<WeatherPhenomen> GetWeatherPhenomenas()
         {
             var weatherPhenomenas = new List<WeatherPhenomen>();
-            foreach (var el in GetColumnData(0))
+            foreach (var el in GetColumnData(11))
             {
-                if (el == null)
+                if (el == null || el == "")
+                {
+                    weatherPhenomenas.Add(new WeatherPhenomen { Id = new Guid(), Value = "null" });
+                }
+                else
                 {
                     weatherPhenomenas.Add(new WeatherPhenomen { Id = new Guid(), Value = el });
                 }
-                weatherPhenomenas.Add(new WeatherPhenomen { Id = new Guid(), Value = el });
             }
             return weatherPhenomenas;
         }
