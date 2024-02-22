@@ -9,5 +9,6 @@ namespace WeatherAppDatabase.Models
     public class Cloudiness
     {
         public Guid Id { get; set; }
+        public string Value { get; set; }
     }
 }

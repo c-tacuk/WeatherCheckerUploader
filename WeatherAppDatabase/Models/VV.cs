@@ -9,5 +9,6 @@ namespace WeatherAppDatabase.Models
     public class VV
     {
         public Guid Id { get; set; }
+        public string Value { get; set; }
     }
 }

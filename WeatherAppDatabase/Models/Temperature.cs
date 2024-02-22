@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace WeatherAppDatabase.Models
 {
-    public class AtmosphericPressure
+    public class Temperature
     {
         public Guid Id { get; set; }
-        public string Value { get; set; }
+        public string DateValue { get; set; }
     }
 }

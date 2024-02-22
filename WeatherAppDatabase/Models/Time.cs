@@ -9,5 +9,6 @@ namespace WeatherAppDatabase.Models
     public class Time
     {
         public Guid Id { get; set; }
+        public string Value { get; set; }
     }
 }

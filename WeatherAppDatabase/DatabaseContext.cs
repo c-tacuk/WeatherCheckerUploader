@@ -13,6 +13,17 @@ namespace WeatherAppDatabase
         public DbSet<DbWeatherArchiveModel> dbWeatherArchiveModels { get; set; }
         public DbSet<ColumnName> columnNames { get; set; }
         public DbSet<Date> dates { get; set; }
+        public DbSet<Time> times { get; set; }
+        public DbSet<Temperature> temperatures { get; set; }
+        public DbSet<RelativeHumidity> relativeHumidities { get; set; }
+        public DbSet<TD> TDs { get; set; }
+        public DbSet<AtmosphericPressure> atmosphericPressures { get; set; }
+        public DbSet<WindDirection> windDirections { get; set; }
+        public DbSet<WindSpeed> windSpeeds { get; set; }
+        public DbSet<Cloudiness> cloudinesses { get; set; }
+        public DbSet<H> Hs { get; set; }
+        public DbSet<VV> Vvs { get; set; }
+        public DbSet<WeatherPhenomen> weatherPhenomenas { get; set; }
         public DatabaseContext(DbContextOptions<DatabaseContext> options)
         : base(options)
         {

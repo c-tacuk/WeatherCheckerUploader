@@ -62,14 +62,22 @@ namespace WeatherAppDatabase.WorkWithExel
             }
             return columnNames;
         }
-        public List<Date> GetDates()
+        public List<Temperatures> GetDates()
         {
-            var dates = new List<Date>();
+            var dates = new List<Temperatures>();
             foreach (var el in GetColumnData(0))
             {
-                if (dates.FirstOrDefault(i => i.DateValue == el) == null && dbContext.dates.FirstOrDefault(i => i.DateValue == el) == null)
+                if (dates.FirstOrDefault(i => i.Value == el) == null && dbContext.dates.FirstOrDefault(i => i.Value == el) == null)
                 {
-                    dates.Add(new Date { Id = new Guid(), DateValue = el });
+                    dates.Add(new Temperatures { Id = new Guid(), Value = el });
+                }
+                else if (dates.FirstOrDefault(i => i.Value == el) != null)
+                {
+                    dates.Add(dates.FirstOrDefault(i => i.Value == el));
+                }
+                else
+                { 
+                    dates.Add(dbContext.dates.FirstOrDefault(i => i.Value == el)); 
                 }
             }
             return dates;
