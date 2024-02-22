@@ -20,17 +20,20 @@ namespace WeatherCheckerUploader.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> AddFile(IFormFile uploadedFile)
+        public async Task<IActionResult> AddFile(IFormFileCollection uploadedFiles)
         {
-            if (uploadedFile != null)
+            foreach (IFormFile file in uploadedFiles)
             {
-                string path = "/WeatherArchives/" + uploadedFile.FileName; // путь к папке WeatherArchives
-                using (var fileStream = new FileStream(appEnvironment.ContentRootPath + path, FileMode.Create)) // сохраняем файл в папку WeatherArchives
+                if (file != null)
                 {
-                    await uploadedFile.CopyToAsync(fileStream);
+                    string path = "/WeatherArchives/" + file.FileName; // путь к папке WeatherArchives
+                    using (var fileStream = new FileStream(appEnvironment.ContentRootPath + path, FileMode.Create)) // сохраняем файл в папку WeatherArchives
+                    {
+                        await file.CopyToAsync(fileStream);
+                    }
+                    string сombinedPath = System.IO.Path.Combine(Directory.GetCurrentDirectory(), $"..\\WeatherCheckerUploader\\WeatherArchives\\{file.FileName}");
+                    exelMethods.SetAllData(сombinedPath);
                 }
-                string сombinedPath = System.IO.Path.Combine(Directory.GetCurrentDirectory(), $"..\\WeatherCheckerUploader\\WeatherArchives\\{uploadedFile.FileName}");
-                exelMethods.SetAllData(сombinedPath);
             }
             return RedirectToAction("Index");
         }
