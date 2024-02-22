@@ -66,7 +66,13 @@ namespace WeatherAppDatabase.WorkWithExel
             model.Name = "msk_2010";
             model.Header = GetArchiveHeader();
             model.Description = GetArchiveDescription();
-            //model.ColumnNames = GetColumnNames();
+            var cNames = GetColumnNames();
+            var dbCNames = new List<ColumnName>();
+            foreach (var name in cNames)
+            {
+                dbCNames.Add(new ColumnName { Id = new Guid(), Name = name });
+            }
+            model.ColumnNames = dbCNames;
             //model.Dates = GetColumnData(0);
             //model.Times = GetColumnData(1);
             //model.Temperatures = GetColumnData(2);

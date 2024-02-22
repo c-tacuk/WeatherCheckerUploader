@@ -8,9 +8,11 @@ namespace WeatherCheckerUploader.Controllers
     public class WeatherMoscow : Controller
     {
         private readonly IDbExelMethods exelMethods;
-        public WeatherMoscow(IDbExelMethods exelMethods)
+        private readonly DatabaseContext databaseContext;
+        public WeatherMoscow(IDbExelMethods exelMethods, DatabaseContext databaseContext)
         {
             this.exelMethods = exelMethods;
+            this.databaseContext = databaseContext;
         }
         public IActionResult Index()
         {
@@ -33,6 +35,12 @@ namespace WeatherCheckerUploader.Controllers
             string path = "WeatherArchives/moskva_" + year + ".xlsx";
             var weatherArchive = new DbWeatherArchiveModel();
             exelMethods.SetAllData(weatherArchive);
+            var models = databaseContext.dbWeatherArchiveModels;
+            var names = new List<string>();
+            foreach(var model in models)
+            {
+                names.Add(model.Name);
+            }
             return View(weatherArchive);
         }
     }

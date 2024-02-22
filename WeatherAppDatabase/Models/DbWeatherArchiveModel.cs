@@ -1,4 +1,6 @@
-﻿namespace WeatherAppDatabase.Models
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace WeatherAppDatabase.Models
 {
     public class DbWeatherArchiveModel
     {
@@ -6,7 +8,7 @@
         public string Name { get; set; }
         public string Header { get; set; }
         public string Description { get; set; }
-        //public List<string> ColumnNames { get; set; }
+        public List<ColumnName> ColumnNames { get; set; }
         //public List<string> Dates { get; set; }
         //public List<string> Times { get; set; }
         //public List<string> Temperatures { get; set; }
