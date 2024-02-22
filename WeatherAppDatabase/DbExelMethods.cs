@@ -1,21 +1,23 @@
 ﻿using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
-using WeatherCheckerUploader.Models;
+using WeatherAppDatabase.Models;
 
-namespace WeatherCheckerUploader.WorkWithExel
+namespace WeatherAppDatabase.WorkWithExel
 {
-    public class ExelMethods : IExelMethods
+    public class DbExelMethods : IDbExelMethods
     {
+        private readonly DatabaseContext dbContext;
         const int numbersOfColumns = 12;
         IWorkbook workbook;
         ISheet sheet;
-        public ExelMethods()
+        public DbExelMethods(DatabaseContext dbContext)
         {
             using (FileStream fileStream = new FileStream("C:\\Users\\DlyaS\\OneDrive\\Рабочий стол\\Все\\IT\\Проекты\\WeatherCheckerUploader_TestTask\\WeatherCheckerUploader\\WeatherCheckerUploader\\WeatherArchives\\moskva_2010.xlsx", FileMode.Open, FileAccess.Read))
             {
                 workbook = new XSSFWorkbook(fileStream);
             }
             sheet = workbook.GetSheetAt(0); // Получение листа
+            this.dbContext = dbContext;
         }
         public string GetCellData(int rowNum, int cellNum)
         {
@@ -59,24 +61,26 @@ namespace WeatherCheckerUploader.WorkWithExel
             }
             return columnNames;
         }
-        public void SetAllData(WeatherArchiveModel model)
+        public void SetAllData(DbWeatherArchiveModel model)
         {
             model.Name = "msk_2010";
             model.Header = GetArchiveHeader();
             model.Description = GetArchiveDescription();
-            model.ColumnNames = GetColumnNames();
-            model.Dates = GetColumnData(0);
-            model.Times = GetColumnData(1);
-            model.Temperatures = GetColumnData(2);
-            model.RelativeHumidities = GetColumnData(3);
-            model.TDs = GetColumnData(4);
-            model.AtmosphericPressures = GetColumnData(5);
-            model.WindDirections = GetColumnData(6);
-            model.WindSpeeds = GetColumnData(7);
-            model.Cloudinesses = GetColumnData(8);
-            model.Hs = GetColumnData(9);
-            model.VVs = GetColumnData(10);
-            model.WeatherPhenomenas = GetColumnData(11);
+            //model.ColumnNames = GetColumnNames();
+            //model.Dates = GetColumnData(0);
+            //model.Times = GetColumnData(1);
+            //model.Temperatures = GetColumnData(2);
+            //model.RelativeHumidities = GetColumnData(3);
+            //model.TDs = GetColumnData(4);
+            //model.AtmosphericPressures = GetColumnData(5);
+            //model.WindDirections = GetColumnData(6);
+            //model.WindSpeeds = GetColumnData(7);
+            //model.Cloudinesses = GetColumnData(8);
+            //model.Hs = GetColumnData(9);
+            //model.VVs = GetColumnData(10);
+            //model.WeatherPhenomenas = GetColumnData(11);
+            dbContext.dbWeatherArchiveModels.Add(model);
+            dbContext.SaveChanges();
         }
     }
 }

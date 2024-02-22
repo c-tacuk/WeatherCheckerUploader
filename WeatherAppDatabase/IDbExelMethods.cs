@@ -1,9 +1,8 @@
-﻿using NPOI.SS.UserModel;
-using WeatherCheckerUploader.Models;
+﻿using WeatherAppDatabase.Models;
 
-namespace WeatherCheckerUploader
+namespace WeatherAppDatabase
 {
-    public interface IExelMethods
+    public interface IDbExelMethods
     {
         public string GetCellData(int rowNum, int cellNum);
         public List<string> GetRowData(int rowNum);
@@ -12,7 +11,7 @@ namespace WeatherCheckerUploader
         public string GetArchiveDescription();
         public string GetColumnName(int columnNum);
         public List<string> GetColumnNames();
-        public void SetAllData(WeatherArchiveModel model);
+        public void SetAllData(DbWeatherArchiveModel model);
        
     }
 }

@@ -1,5 +1,7 @@
+using Microsoft.EntityFrameworkCore;
+using WeatherAppDatabase;
+using WeatherAppDatabase.WorkWithExel;
 using WeatherCheckerUploader;
-using WeatherCheckerUploader.WorkWithExel;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,7 +9,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddTransient<IExelMethods, ExelMethods>();
+builder.Services.AddTransient<IDbExelMethods, DbExelMethods>();
+
+string connection = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(connection));
 
 var app = builder.Build();
 

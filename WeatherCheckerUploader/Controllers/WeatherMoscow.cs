@@ -1,14 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
+using WeatherAppDatabase;
+using WeatherAppDatabase.Models;
 using WeatherCheckerUploader.Models;
-using WeatherCheckerUploader.WorkWithExel;
 
 namespace WeatherCheckerUploader.Controllers
 {
     public class WeatherMoscow : Controller
     {
-        private readonly IExelMethods exelMethods;
-        public WeatherMoscow(IExelMethods exelMethods)
+        private readonly IDbExelMethods exelMethods;
+        public WeatherMoscow(IDbExelMethods exelMethods)
         {
             this.exelMethods = exelMethods;
         }
@@ -31,7 +31,7 @@ namespace WeatherCheckerUploader.Controllers
         public IActionResult WatchYear(string year)
         {
             string path = "WeatherArchives/moskva_" + year + ".xlsx";
-            var weatherArchive = new WeatherArchiveModel();
+            var weatherArchive = new DbWeatherArchiveModel();
             exelMethods.SetAllData(weatherArchive);
             return View(weatherArchive);
         }
