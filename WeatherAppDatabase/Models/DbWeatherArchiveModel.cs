@@ -5,7 +5,7 @@ namespace WeatherAppDatabase.Models
     public class DbWeatherArchiveModel
     {
         public Guid Id { get; set; }
-        public string Path { get; set; }
+        public string Path { get; set; } = "path";
         public string Name { get; set; }
         public string Header { get; set; }
         public string Description { get; set; }

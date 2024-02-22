@@ -22,7 +22,7 @@ namespace WeatherAppDatabase
         public DbSet<WindSpeed> windSpeeds { get; set; }
         public DbSet<Cloudiness> cloudinesses { get; set; }
         public DbSet<H> Hs { get; set; }
-        public DbSet<VV> Vvs { get; set; }
+        public DbSet<VV> VVs { get; set; }
         public DbSet<WeatherPhenomen> weatherPhenomenas { get; set; }
         public DatabaseContext(DbContextOptions<DatabaseContext> options)
         : base(options)

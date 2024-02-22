@@ -9,6 +9,6 @@ namespace WeatherAppDatabase.Models
     public class WeatherPhenomen
     {
         public Guid Id { get; set; }
-        public string Value { get; set; }
+        public string Value { get; set; } = "null";
     }
 }

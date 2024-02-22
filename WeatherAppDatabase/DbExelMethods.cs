@@ -1,5 +1,6 @@
 ﻿using NPOI.SS.UserModel;
 using NPOI.XSSF.UserModel;
+using SixLabors.ImageSharp.ColorSpaces;
 using System.Linq;
 using WeatherAppDatabase.Models;
 
@@ -62,25 +63,117 @@ namespace WeatherAppDatabase.WorkWithExel
             }
             return columnNames;
         }
-        public List<Temperatures> GetDates()
+        public List<Date> GetDates()
         {
-            var dates = new List<Temperatures>();
+            var dates = new List<Date>();
             foreach (var el in GetColumnData(0))
             {
-                if (dates.FirstOrDefault(i => i.Value == el) == null && dbContext.dates.FirstOrDefault(i => i.Value == el) == null)
-                {
-                    dates.Add(new Temperatures { Id = new Guid(), Value = el });
-                }
-                else if (dates.FirstOrDefault(i => i.Value == el) != null)
-                {
-                    dates.Add(dates.FirstOrDefault(i => i.Value == el));
-                }
-                else
-                { 
-                    dates.Add(dbContext.dates.FirstOrDefault(i => i.Value == el)); 
-                }
+                dates.Add(new Date { Id = new Guid(), Value = el });
             }
             return dates;
+        }
+        public List<Time> GetTimes()
+        {
+            var dates = new List<Date>();
+            foreach (var el in GetColumnData(0))
+            {
+                dates.Add(new Date { Id = new Guid(), Value = el });
+            }
+            return dates;
+        }
+        public List<Temperature> GetTemperatures()
+        {
+            var dates = new List<Date>();
+            foreach (var el in GetColumnData(0))
+            {
+                dates.Add(new Date { Id = new Guid(), Value = el });
+            }
+            return dates;
+        }
+        public List<RelativeHumidity> GetRelativeHumidities()
+        {
+            var dates = new List<Date>();
+            foreach (var el in GetColumnData(0))
+            {
+                dates.Add(new Date { Id = new Guid(), Value = el });
+            }
+            return dates;
+        }
+        public List<TD> GetTDs()
+        {
+            var dates = new List<Date>();
+            foreach (var el in GetColumnData(0))
+            {
+                dates.Add(new Date { Id = new Guid(), Value = el });
+            }
+            return dates;
+        }
+        public List<AtmosphericPressure> GetAtmosphericPressures()
+        {
+            var dates = new List<Date>();
+            foreach (var el in GetColumnData(0))
+            {
+                dates.Add(new Date { Id = new Guid(), Value = el });
+            }
+            return dates;
+        }
+        public List<WindDirection> GetWindDirections()
+        {
+            var dates = new List<Date>();
+            foreach (var el in GetColumnData(0))
+            {
+                dates.Add(new Date { Id = new Guid(), Value = el });
+            }
+            return dates;
+        }
+        public List<WindSpeed> GetWindSpeeds()
+        {
+            var dates = new List<Date>();
+            foreach (var el in GetColumnData(0))
+            {
+                dates.Add(new Date { Id = new Guid(), Value = el });
+            }
+            return dates;
+        }
+        public List<Cloudiness> GetCloudinesses()
+        {
+            var dates = new List<Date>();
+            foreach (var el in GetColumnData(0))
+            {
+                dates.Add(new Date { Id = new Guid(), Value = el });
+            }
+            return dates;
+        }
+        public List<H> GetHs()
+        {
+            var dates = new List<Date>();
+            foreach (var el in GetColumnData(0))
+            {
+                dates.Add(new Date { Id = new Guid(), Value = el });
+            }
+            return dates;
+        }
+        public List<VV> GetVVs()
+        {
+            var dates = new List<Date>();
+            foreach (var el in GetColumnData(0))
+            {
+                dates.Add(new Date { Id = new Guid(), Value = el });
+            }
+            return dates;
+        }
+        public List<WeatherPhenomen> GetWeatherPhenomenas()
+        {
+            var weatherPhenomenas = new List<WeatherPhenomen>();
+            foreach (var el in GetColumnData(0))
+            {
+                if (el == null)
+                {
+                    weatherPhenomenas.Add(new WeatherPhenomen { Id = new Guid(), Value = el });
+                }
+                weatherPhenomenas.Add(new WeatherPhenomen { Id = new Guid(), Value = el });
+            }
+            return weatherPhenomenas;
         }
         public void SetAllData(DbWeatherArchiveModel model)
         {
@@ -89,17 +182,17 @@ namespace WeatherAppDatabase.WorkWithExel
             model.Description = GetArchiveDescription();
             model.ColumnNames = GetColumnNames();
             model.Dates = GetDates();
-            //model.Times = GetColumnData(1);
-            //model.Temperatures = GetColumnData(2);
-            //model.RelativeHumidities = GetColumnData(3);
-            //model.TDs = GetColumnData(4);
-            //model.AtmosphericPressures = GetColumnData(5);
-            //model.WindDirections = GetColumnData(6);
-            //model.WindSpeeds = GetColumnData(7);
-            //model.Cloudinesses = GetColumnData(8);
-            //model.Hs = GetColumnData(9);
-            //model.VVs = GetColumnData(10);
-            //model.WeatherPhenomenas = GetColumnData(11);
+            model.Times = GetTimes();
+            model.Temperatures = GetTemperatures();
+            model.RelativeHumidities = GetRelativeHumidities();
+            model.TDs = GetTDs();
+            model.AtmosphericPressures = GetAtmosphericPressures();
+            model.WindDirections = GetWindDirections();
+            model.WindSpeeds = GetWindSpeeds();
+            model.Cloudinesses = GetCloudinesses();
+            model.Hs = GetHs();
+            model.VVs = GetVVs();
+            model.WeatherPhenomenas = GetWeatherPhenomenas();
             dbContext.dbWeatherArchiveModels.Add(model);
             dbContext.SaveChanges();
         }
